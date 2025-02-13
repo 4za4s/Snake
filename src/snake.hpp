@@ -9,16 +9,19 @@ using namespace std;
 class Snake
 {
 private:
+    const Vector2 SIZE = {50, 50};
+    const Color COLOUR = GREEN;
     Vector2 pos = {10, 10};
-    Vector2 size = {50, 50};
-    Color colour = GREEN;
     Vector2 speed = {1, 0};
 
-    vector<Snake> tail = {};
+    vector<Vector2> tail = {};
 
 public:
     Snake() {};
-    void drawSnake();
-    void updateSnake(int frame);
+    ~Snake() {};
+    void DrawSnake();
+    void UpdateSnake(int frame);
+
+    void EatFruit();
 };
 

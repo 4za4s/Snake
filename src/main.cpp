@@ -13,6 +13,7 @@ int main()
 
     int frame = 1;
     Snake snake;
+    snake.EatFruit();
 
     // Main game loop
     while (!WindowShouldClose()) 
@@ -22,13 +23,13 @@ int main()
         // Update
         if (frame % 10 == 0)
         {
-            snake.updateSnake(frame);
+            snake.UpdateSnake(frame);
         }
         
         // Draw
         BeginDrawing();
         ClearBackground(BLACK);
-        snake.drawSnake();
+        snake.DrawSnake();
         EndDrawing();
         
         frame++;
