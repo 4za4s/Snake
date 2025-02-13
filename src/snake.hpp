@@ -9,9 +9,9 @@ using namespace std;
 class Snake
 {
 private:
-    const Vector2 SIZE = {50, 50};
+    const Vector2 SIZE = {30, 30};
     const Color COLOUR = GREEN;
-    Vector2 pos = {10, 10};
+    Vector2 pos = {5, 5};
     Vector2 speed = {1, 0};
 
     vector<Vector2> tail = {};
@@ -21,7 +21,10 @@ public:
     ~Snake() {};
     void DrawSnake();
     void UpdateSnake(int frame);
-
+    void MoveUp();
+    void MoveDown();
+    void MoveLeft();
+    void MoveRight();
     void EatFruit();
 };
 

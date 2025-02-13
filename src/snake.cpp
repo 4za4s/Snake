@@ -15,7 +15,7 @@ void Snake::DrawSnake()
 void Snake::UpdateSnake(int frame)
 {
     //only move in one direction
-    assert((abs(speed.x) == 1 && speed.y == 0) || (speed.x == 0 && abs(speed.y == 1)));
+    assert((abs(speed.x) == 1 && speed.y == 0) || (speed.x == 0 && abs(speed.y) == 1));
 
     for (int i = tail.size(); i > 0; i--)
     {
@@ -27,8 +27,32 @@ void Snake::UpdateSnake(int frame)
         tail[0] = pos;
     }
 
-    pos.x += speed.x * (SIZE.x + 20);
-    pos.y += speed.y * (SIZE.y + 20); 
+    pos.x += speed.x * (SIZE.x + 10);
+    pos.y += speed.y * (SIZE.y + 10); 
+}
+
+void Snake::MoveUp()
+{
+    speed.x = 0;
+    speed.y = -1;
+}
+
+void Snake::MoveDown()
+{
+    speed.x = 0;
+    speed.y = 1;
+}
+
+void Snake::MoveLeft()
+{
+    speed.x = -1;
+    speed.y = 0;
+}
+
+void Snake::MoveRight()
+{
+    speed.x = 1;
+    speed.y = 0;
 }
 
 void Snake::EatFruit()
