@@ -1,4 +1,4 @@
-# Raylib - Game Of Life
+# Raylib - Snake
 Snake implemented in C++ with raylib
 Raylib must be installed to C:/raylib/
 
