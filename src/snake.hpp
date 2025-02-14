@@ -15,17 +15,18 @@ struct int2
 class Snake
 {
 private:
-    const int2 SIZE = {40, 40};
+    const int2 SIZE = {20, 20};
     const Color COLOUR = GREEN;
-    int2 window = {0, 0};
-    int2 pos = {5, 5};
+    const int2 WINDOW = {0, 0};
+    int2 pos = {0, 0};
     int2 speed = {1, 0};
-    int bodyPadding = 5; // space to leave between segments
+    int bodyPadding = 2; // space to leave between segments
+    float scale = 1;
 
     vector<int2> tail = {};
 
 public:
-    Snake(int WINDOW_WIDTH, int WINDOW_HEIGHT):window({WINDOW_WIDTH, WINDOW_HEIGHT}) {};
+    Snake(int WINDOW_WIDTH, int WINDOW_HEIGHT):WINDOW({WINDOW_WIDTH, WINDOW_HEIGHT}) {};
     ~Snake() {};
     void DrawSnake();
     void UpdateSnake();
@@ -35,5 +36,7 @@ public:
     void MoveLeft();
     void MoveRight();
     void EatFruit();
+
+    void UpdateWindow(int windowWidth, int windowHeight);
 };
 

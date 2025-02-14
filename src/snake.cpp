@@ -7,10 +7,10 @@ void Snake::DrawSnake()
 {
     for (int2 tailPos: tail)
     {
-        DrawRectangle(tailPos.x, tailPos.y, SIZE.x, SIZE.y, COLOUR);
+        DrawRectangle(((tailPos.x * SIZE.x) + bodyPadding)*scale, ((tailPos.y * SIZE.y) + bodyPadding)*scale, (SIZE.x - bodyPadding*2)*scale, (SIZE.y - bodyPadding*2)*scale, COLOUR);
     }
 
-    DrawRectangle(pos.x, pos.y, SIZE.x, SIZE.y, { 0, 200, 150, 255 });
+    DrawRectangle(((pos.x * SIZE.x) + bodyPadding)*scale, ((pos.y * SIZE.y) + bodyPadding)*scale, (SIZE.x - bodyPadding*2)*scale, (SIZE.y - bodyPadding*2)*scale, { 0, 200, 150, 255 });
 }
 
 void Snake::UpdateSnake()
@@ -28,10 +28,14 @@ void Snake::UpdateSnake()
         tail[0] = pos;
     }
 
-    pos.x += (speed.x * (SIZE.x + bodyPadding*2));
-    pos.x = (pos.x % window.x);
-    pos.y += (speed.y * (SIZE.y + bodyPadding*2)); 
-    pos.y = (pos.y % window.y);
+    pos.x += speed.x;
+    pos.x = pos.x % (WINDOW.x / SIZE.x);
+    if (pos.x < 0) pos.x = (WINDOW.x / SIZE.x)-1;
+    
+    pos.y += speed.y;
+    pos.y = pos.y % (WINDOW.y / SIZE.y);
+    if (pos.y < 0) pos.y = (WINDOW.y / SIZE.y)-1;
+
 }
 
 void Snake::MoveUp()
@@ -61,4 +65,10 @@ void Snake::MoveRight()
 void Snake::EatFruit()
 {
     tail.push_back(pos);
+}
+
+void Snake::UpdateWindow(int windowWidth, int windowHeight)
+{
+    scale = min((float)windowWidth / (float)WINDOW.x, (float)windowHeight / (float)WINDOW.y);
+    cout << scale << '\n';
 }
