@@ -5,14 +5,15 @@
 
 void Snake::DrawSnake()
 {
-    DrawRectangleV(pos, SIZE, COLOUR);
-    for (Vector2 tailPos: tail)
+    for (int2 tailPos: tail)
     {
-        DrawRectangleV(tailPos, SIZE, COLOUR);
+        DrawRectangle(tailPos.x, tailPos.y, SIZE.x, SIZE.y, COLOUR);
     }
+
+    DrawRectangle(pos.x, pos.y, SIZE.x, SIZE.y, { 0, 200, 150, 255 });
 }
 
-void Snake::UpdateSnake(int frame)
+void Snake::UpdateSnake()
 {
     //only move in one direction
     assert((abs(speed.x) == 1 && speed.y == 0) || (speed.x == 0 && abs(speed.y) == 1));
@@ -27,8 +28,10 @@ void Snake::UpdateSnake(int frame)
         tail[0] = pos;
     }
 
-    pos.x += speed.x * (SIZE.x + 10);
-    pos.y += speed.y * (SIZE.y + 10); 
+    pos.x += (speed.x * (SIZE.x + bodyPadding*2));
+    pos.x = (pos.x % window.x);
+    pos.y += (speed.y * (SIZE.y + bodyPadding*2)); 
+    pos.y = (pos.y % window.y);
 }
 
 void Snake::MoveUp()
