@@ -4,6 +4,7 @@
 
 int main() 
 {
+    //testing
     // Initialize window
     const int GAME_WIDTH = 640;
     const int GAME_HEIGHT = 360;
